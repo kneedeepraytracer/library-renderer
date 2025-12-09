@@ -1,4 +1,4 @@
-#include "point3.h"
+#include "../include/kdrt/renderer/point3.h"
 
 namespace kdrt::renderer {
     Point3::Point3() : Vector3{0, 0, 0} {}

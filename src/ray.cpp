@@ -1,7 +1,7 @@
-#include "ray.h"
+#include "../include/kdrt/renderer/ray.h"
 
-#include "point3.h"
-#include "vector3.h"
+#include "../include/kdrt/renderer/point3.h"
+#include "../include/kdrt/renderer/vector3.h"
 
 namespace kdrt::renderer {
     Ray::Ray() {}

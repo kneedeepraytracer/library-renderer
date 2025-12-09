@@ -1,6 +1,6 @@
-#include "color.h"
+#include "../include/kdrt/renderer/color.h"
 
-#include "interval.h"
+#include "../include/kdrt/renderer/interval.h"
 
 namespace kdrt::renderer {
     void write_color(std::ostream &out, const Color &pixel_color) {

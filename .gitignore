@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+# Other Crufty Stufts
+.idea
+build
+CMakeUserPresets.json
