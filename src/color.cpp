@@ -1,12 +1,18 @@
-#include "../include/kdrt/renderer/color.h"
+#include "kdrt/renderer/color.h"
 
-#include "../include/kdrt/renderer/interval.h"
+#include <cmath>
+#include <iostream>
+
+#include "kdrt/renderer/interval.h"
 
 namespace kdrt::renderer {
+    Color::Color() : red{0}, green{0}, blue{0} {}
+    Color::Color(double r, double g, double b) : red{r}, green{g}, blue{b} {}
+
     void write_color(std::ostream &out, const Color &pixel_color) {
-        auto r = pixel_color[0];
-        auto g = pixel_color[1];
-        auto b = pixel_color[2];
+        auto r = pixel_color.red;
+        auto g = pixel_color.green;
+        auto b = pixel_color.blue;
 
         // Apply a linear to gamma transform for gamma 2
         r = linear_to_gamma(r);

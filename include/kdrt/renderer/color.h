@@ -1,11 +1,17 @@
 #pragma once
 
+#include <cmath>
 #include <iostream>
 
-#include "vector3.h"
-
 namespace kdrt::renderer {
-    class Color : public Vector3 {
+    class Color {
+    public:
+        double red;
+        double green;
+        double blue;
+
+        Color();
+        Color(double r, double g, double b);
 
     };
 
