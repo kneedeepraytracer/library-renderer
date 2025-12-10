@@ -26,7 +26,7 @@ class LibraryRenderer(ConanFile):
         cmake_layout(self)
 
     def build(self):
+        print("tools.build:skip_test {}".format(self.conf.get("tools.build:skip_test", default = False)))
         cmake = CMake(self)
-        #cmake.definitions["CONAN_CXX_FLAGS"] += " --coverage"
         cmake.configure()
         cmake.build()

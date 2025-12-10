@@ -15,3 +15,5 @@ coverage: tests
 
 clean:
 	rm -rf ./build
+	rm *.profdata
+	rm *.profraw
