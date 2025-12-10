@@ -1,6 +1,6 @@
-#include "../include/kdrt/renderer/interval.h"
+#include "kdrt/renderer/interval.h"
 
-#include "../include/kdrt/renderer/utils.h"
+#include "kdrt/renderer/utils.h"
 
 namespace kdrt::renderer {
     Interval::Interval() : min(+infinity), max(-infinity) {} // Default interval is empty

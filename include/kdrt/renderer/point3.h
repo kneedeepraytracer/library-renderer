@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector3.h"
+#include "kdrt/renderer/vector3.h"
 
 namespace kdrt::renderer {
 

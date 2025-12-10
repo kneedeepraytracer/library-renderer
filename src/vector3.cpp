@@ -1,6 +1,6 @@
-#include "../include/kdrt/renderer/vector3.h"
+#include "kdrt/renderer/vector3.h"
 
-#include "../include/kdrt/renderer/utils.h"
+#include "kdrt/renderer/utils.h"
 
 namespace kdrt::renderer {
     Vector3::Vector3() : e{0, 0, 0} {}

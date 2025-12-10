@@ -2,8 +2,8 @@
 
 #include <fmt/format.h>
 
-#include "point3.h"
-#include "vector3.h"
+#include "kdrt/renderer/point3.h"
+#include "kdrt/renderer/vector3.h"
 
 namespace kdrt::renderer {
     class Ray {

@@ -6,7 +6,7 @@
 
 #include <fmt/format.h>
 
-#include "utils.h"
+#include "kdrt/renderer/utils.h"
 
 namespace kdrt::renderer {
     class Vector3 {
