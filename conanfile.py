@@ -18,12 +18,15 @@ class LibraryRenderer(ConanFile):
     def requirements(self):
         self.requires("fmt/11.2.0")
         self.requires("spdlog/1.15.3")
-        self.requires("gtest/1.17.0") # TODO: Figure out why this can't be a tool_requires.
+
+    def build_requirements(self):
+        self.test_requires("gtest/1.17.0")
 
     def layout(self):
         cmake_layout(self)
 
     def build(self):
         cmake = CMake(self)
+        #cmake.definitions["CONAN_CXX_FLAGS"] += " --coverage"
         cmake.configure()
         cmake.build()

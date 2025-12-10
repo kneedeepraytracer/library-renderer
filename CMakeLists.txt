@@ -17,4 +17,7 @@ add_subdirectory(src)
 
 enable_testing()
 include(CTest)
-add_subdirectory(tests)
+
+if(NOT BUILD_TESTING STREQUAL OFF)
+    add_subdirectory(tests)
+endif()
