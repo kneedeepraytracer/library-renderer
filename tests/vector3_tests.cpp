@@ -53,3 +53,12 @@ TEST(Vector3, star_equals_operator) {
     ASSERT_EQ(vec.e[1], 6.0);
     ASSERT_EQ(vec.e[2], 9.0);
 }
+
+TEST(Vector3, slash_equals_operator) {
+    kdrt::renderer::Vector3 vec = kdrt::renderer::Vector3{1, 2, 3};
+    vec /= 2;
+
+    ASSERT_EQ(vec.e[0], 0.5);
+    ASSERT_EQ(vec.e[1], 1.0);
+    ASSERT_EQ(vec.e[2], 1.5);
+}
