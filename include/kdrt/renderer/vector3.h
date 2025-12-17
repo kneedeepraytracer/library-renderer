@@ -11,20 +11,20 @@
 namespace kdrt::renderer {
     class Vector3 {
     public:
-        double e[3];
+        double x;
+        double y;
+        double z;
 
         Vector3();
-        Vector3(double e0, double e1, double e2);
+        Vector3(double x, double y, double z);
 
         Vector3 operator-() const;
-        double operator[](int i) const;
-        double &operator[](int i);
         Vector3 &operator+=(const Vector3 &v);
         Vector3 &operator*=(double t);
         Vector3 &operator/=(double t);
 
-        double length() const;
         double length_squared() const;
+        double length() const;
         bool near_zero() const;
 
         static Vector3 random();
@@ -35,23 +35,23 @@ namespace kdrt::renderer {
 
     // Vector3 Utility Functions
     inline std::ostream &operator<<(std::ostream &out, const Vector3 &v) {
-        return out << v.e[0] << " " << v.e[1] << " " << v.e[2];
+        return out << v.x << " " << v.y << " " << v.z;
     }
 
     inline Vector3 operator+(const Vector3 &u, const Vector3 &v) {
-        return Vector3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
+        return Vector3(u.x + v.x, u.y + v.y, u.z + v.z);
     }
 
     inline Vector3 operator-(const Vector3 &u, const Vector3 &v) {
-        return Vector3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
+        return Vector3(u.x - v.x, u.y - v.y, u.z - v.z);
     }
 
     inline Vector3 operator*(const Vector3 &u, const Vector3 &v) {
-        return Vector3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
+        return Vector3(u.x * v.x, u.y * v.y, u.z * v.z);
     }
 
     inline Vector3 operator*(double t, const Vector3 &v) {
-        return Vector3(t * v.e[0], t * v.e[1], t * v.e[2]);
+        return Vector3(t * v.x, t * v.y, t * v.z);
     }
 
     inline Vector3 operator*(const Vector3 &v, double t) {
@@ -63,14 +63,14 @@ namespace kdrt::renderer {
     }
 
     inline double dot(const Vector3 &u, const Vector3 &v) {
-        return (u.e[0] * v.e[0]) + (u.e[1] * v.e[1]) + (u.e[2] * v.e[2]);
+        return (u.x * v.x) + (u.y * v.y) + (u.z * v.z);
     }
 
     inline Vector3 cross(const Vector3 &u, const Vector3 &v) {
         return Vector3(
-                (u.e[1] * v.e[2]) - (u.e[2] * v.e[1]),
-                (u.e[2] * v.e[0]) - (u.e[0] * v.e[2]),
-                (u.e[0] * v.e[1]) - (u.e[1] * v.e[0])
+                (u.y * v.z) - (u.z * v.y),
+                (u.z * v.x) - (u.x * v.z),
+                (u.x * v.y) - (u.y * v.x)
         );
     }
 

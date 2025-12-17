@@ -11,7 +11,11 @@ namespace kdrt::renderer {
     const Vector3& Ray::direction() const { return dir; }
 
     Point3 Ray::at(double t) const {
-        return orig + (t * dir);
+        return Point3{
+            orig.x + (t * dir.x),
+            orig.y + (t * dir.y),
+            orig.z + (t * dir.z)
+        };
     }
 
     std::string Ray::to_string() const {
