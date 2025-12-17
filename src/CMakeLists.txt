@@ -1,9 +1,18 @@
 add_library(libkdrtrenderer STATIC
-    vector3.cpp
-    point3.cpp
+    aabb.cpp
+    bvh.cpp
+    camera.cpp
     color.cpp
+    dialectric.cpp
+    hitrecord.cpp
+    hittable_list.cpp
     interval.cpp
+    lambertian.cpp
+    metal.cpp
+    point3.cpp
     ray.cpp
+    sphere.cpp
+    vector3.cpp
 )
 target_link_libraries(${PROJECT_NAME} fmt::fmt)
 target_link_libraries(${PROJECT_NAME} spdlog::spdlog)

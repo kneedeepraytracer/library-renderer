@@ -5,10 +5,12 @@
 
 namespace kdrt::renderer {
     Ray::Ray() {}
-    Ray::Ray(const Point3& origin, const Vector3& direction) : orig(origin), dir(direction) {}
+    Ray::Ray(const Point3& origin, const Vector3& direction) : orig(origin), dir(direction), tm(0) {}
+    Ray::Ray(const Point3& origin, const Vector3& direction, double time) : orig(origin), dir(direction), tm(time) {}
 
     const Point3& Ray::origin() const { return orig; }
     const Vector3& Ray::direction() const { return dir; }
+    double Ray::time() const { return tm; }
 
     Point3 Ray::at(double t) const {
         return Point3{

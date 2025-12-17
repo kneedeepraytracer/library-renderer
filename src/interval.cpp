@@ -7,6 +7,12 @@ namespace kdrt::renderer {
 
     Interval::Interval(double min, double max) : min(min), max(max) {}
 
+    Interval::Interval(const Interval& a, const Interval& b) {
+        // Create the interval tightly enclosing the two input intervals.
+        min = a.min <= b.min ? a.min : b.min;
+        max = a.max >= b.max ? a.max : b.max;
+    }
+
     double Interval::size() const {
         return max - min;
     }
@@ -27,6 +33,11 @@ namespace kdrt::renderer {
             return max;
         }
         return x;
+    }
+
+    Interval Interval::expand(double delta) const {
+        auto padding = delta / 2;
+        return Interval(min - padding, max + padding);
     }
 
     const Interval Interval::empty = Interval(+infinity, -infinity);

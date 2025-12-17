@@ -9,6 +9,13 @@ namespace kdrt::renderer {
     Color::Color() : red{0}, green{0}, blue{0} {}
     Color::Color(double r, double g, double b) : red{r}, green{g}, blue{b} {}
 
+    Color &Color::operator+=(const Color &c) {
+        red += c.red;
+        green += c.green;
+        blue += c.blue;
+        return *this;
+    }
+
     void write_color(std::ostream &out, const Color &pixel_color) {
         auto r = pixel_color.red;
         auto g = pixel_color.green;

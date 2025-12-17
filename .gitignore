@@ -46,3 +46,4 @@ build
 CMakeUserPresets.json
 *.profdata
 *.profraw
+*.ppm

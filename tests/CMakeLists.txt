@@ -4,7 +4,9 @@ mark_as_advanced(BUILD_GMOCK BUILD_GTEST gtest_hide_internal_symbols)
 
 add_executable(unit_tests
     color_tests.cpp
+    interval_tests.cpp
     point3_tests.cpp
+    render_tests.cpp
     vector3_tests.cpp
 )
 

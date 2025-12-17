@@ -10,9 +10,11 @@ namespace kdrt::renderer {
     public:
         Ray();
         Ray(const Point3& origin, const Vector3& direction);
+        Ray(const Point3& origin, const Vector3& direction, double time);
 
         const Point3& origin() const;
         const Vector3& direction() const;
+        double time() const;
 
         Point3 at(double t) const;
         std::string to_string() const;
@@ -20,5 +22,6 @@ namespace kdrt::renderer {
     private:
         Point3 orig;
         Vector3 dir;
+        double tm;
     };
 }
