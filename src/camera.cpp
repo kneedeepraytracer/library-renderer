@@ -1,6 +1,6 @@
 #include "kdrt/renderer/camera.h"
 
-#include <fstream>
+//#include <fstream>
 #include <string>
 
 #include <spdlog/spdlog.h>
@@ -8,6 +8,7 @@
 #include "kdrt/renderer/utils.h"
 
 #include "kdrt/renderer/color.h"
+#include "kdrt/renderer/frame.h"
 #include "kdrt/renderer/hitrecord.h"
 #include "kdrt/renderer/hittable.h"
 #include "kdrt/renderer/interval.h"
@@ -17,14 +18,15 @@
 #include "kdrt/renderer/vector3.h"
 
 namespace kdrt::renderer {
-    void Camera::render(const Hittable &world) {
+    Frame Camera::render(const Hittable &world) {
         initialize();
 
         // Going to output directly to a file so a logger can be used.
-        std::ofstream image_file;
-        image_file.open(image_filename);
+        //std::ofstream image_file;
+        //image_file.open(image_filename);
 
-        image_file << "P3\n" << image_width << " " << image_height << "\n255\n";
+        //image_file << "P3\n" << image_width << " " << image_height << "\n255\n";
+        Frame frame{image_width, image_height};
 
         for (int j = 0; j < image_height; j++) {
             for (int i = 0; i < image_width; i++) {
@@ -34,13 +36,16 @@ namespace kdrt::renderer {
                     Ray r = get_ray(i, j);
                     pixel_color += ray_color(r, max_depth, world);
                 }
-                write_color(image_file, pixel_samples_scale * pixel_color);
+                //write_color(image_file, pixel_samples_scale * pixel_color);
+                frame.set_pixel(i, j, pixel_samples_scale * pixel_color);
             }
         }
 
-        image_file.close();
+        //image_file.close();
 
-        spdlog::info("Done - {}", image_filename);
+        //spdlog::info("Done - {}", image_filename);
+        spdlog::info("Done");
+        return frame;
     }
 
     void Camera::initialize() {

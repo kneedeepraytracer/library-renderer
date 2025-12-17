@@ -1,9 +1,10 @@
 #pragma once
 
-#include <fstream>
+//#include <fstream>
 #include <string>
 
 #include "kdrt/renderer/color.h"
+#include "kdrt/renderer/frame.h"
 #include "kdrt/renderer/hittable.h"
 #include "kdrt/renderer/point3.h"
 #include "kdrt/renderer/ray.h"
@@ -13,9 +14,9 @@ namespace kdrt::renderer {
     class Camera {
     public:
         double aspect_ratio = 1.0; // Ratio of image width over height
-        int image_width = 100; // Rendered image width in pixel count
-        int samples_per_pixel = 10; // Count of random samples for each pixel
-        int max_depth = 10; // Maximum number of ray bounces into scene
+        uint image_width = 100; // Rendered image width in pixel count
+        uint samples_per_pixel = 10; // Count of random samples for each pixel
+        uint max_depth = 10; // Maximum number of ray bounces into scene
 
         double vfov = 90; // Vertical view angle (field of view)
         Point3 lookfrom = Point3(0, 0, 0); // Point the camera is looking from (camera location)
@@ -25,12 +26,12 @@ namespace kdrt::renderer {
         double defocus_angle = 0; // Variation angle of rays through each pixel
         double focus_distance = 10; // Distance from camera lookfrom point to plane of perfect focus
 
-        std::string image_filename = "image.ppm";  // Filename of the output image.
+        //std::string image_filename = "image.ppm";  // Filename of the output image.
 
-        void render(const Hittable &world);
+        Frame render(const Hittable &world);
 
     private:
-        int image_height; // Rendered image height
+        uint image_height; // Rendered image height
         double pixel_samples_scale; // Color scale factor for a sum pf pixel samples
         Point3 center; // Camera center
         Point3 pixel_zero_loc; // Location on pixel 0, 0

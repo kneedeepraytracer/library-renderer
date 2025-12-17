@@ -1,5 +1,11 @@
 #include "kdrt/renderer/vector3.h"
 
+#include <cmath>
+#include <iostream>
+#include <string>
+
+#include <fmt/format.h>
+
 #include "kdrt/renderer/utils.h"
 
 namespace kdrt::renderer {

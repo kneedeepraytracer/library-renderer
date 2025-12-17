@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <string>
 
 namespace kdrt::renderer {
     class Color {
@@ -15,6 +16,7 @@ namespace kdrt::renderer {
 
         Color &operator+=(const Color &c);
 
+        std::string to_string() const;
     };
 
     inline double linear_to_gamma(double linear_component) {

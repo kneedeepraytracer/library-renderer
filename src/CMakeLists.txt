@@ -4,6 +4,7 @@ add_library(libkdrtrenderer STATIC
     camera.cpp
     color.cpp
     dialectric.cpp
+    frame.cpp
     hitrecord.cpp
     hittable_list.cpp
     interval.cpp

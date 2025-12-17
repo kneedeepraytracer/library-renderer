@@ -2,6 +2,9 @@
 
 #include <cmath>
 #include <iostream>
+#include <string>
+
+#include <fmt/format.h>
 
 #include "kdrt/renderer/interval.h"
 
@@ -14,6 +17,10 @@ namespace kdrt::renderer {
         green += c.green;
         blue += c.blue;
         return *this;
+    }
+
+    std::string Color::to_string() const {
+        return fmt::format("Color{{ red: {}, green: {}, blue: {} }}", red, green, blue);
     }
 
     void write_color(std::ostream &out, const Color &pixel_color) {

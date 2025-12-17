@@ -1,5 +1,9 @@
 #include "kdrt/renderer/point3.h"
 
+#include <string>
+
+#include <fmt/format.h>
+
 namespace kdrt::renderer {
     Point3::Point3() : x{0}, y{0}, z{0} {}
     Point3::Point3(double x, double y, double z) : x{x}, y{y}, z{z} {}
