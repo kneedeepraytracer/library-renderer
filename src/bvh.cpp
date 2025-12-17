@@ -59,21 +59,21 @@ namespace kdrt::renderer {
         return bbox;
     }
 
-    bool box_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b, int axis_index) {
+    bool BvhNode::box_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b, int axis_index) {
         Interval a_axis_interval = a->bounding_box().axis_interval(axis_index);
         Interval b_axis_interval = b->bounding_box().axis_interval(axis_index);
         return a_axis_interval.min < b_axis_interval.min;
     }
 
-    bool box_x_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    bool BvhNode::box_x_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
         return box_compare(a, b, 0);
     }
 
-    bool box_y_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    bool BvhNode::box_y_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
         return box_compare(a, b, 1);
     }
 
-    bool box_z_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    bool BvhNode::box_z_compare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
         return box_compare(a, b, 2);
     }
 }
