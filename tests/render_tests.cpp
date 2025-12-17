@@ -11,7 +11,7 @@
 #include "kdrt/renderer/point3.h"
 #include "kdrt/renderer/sphere.h"
 
-TEST(Render, simple_sphere) {
+TEST(Render, simple_spheres) {
     double R = std::cos(pi/4);
 
     std::shared_ptr<kdrt::renderer::Material> material_left = std::make_shared<kdrt::renderer::Lambertian>(kdrt::renderer::Color(0, 0, 1));
@@ -26,12 +26,12 @@ TEST(Render, simple_sphere) {
 
     cam.aspect_ratio = 16.0 / 9.0;
     // Trying a vry vry smol render.
-    cam.image_width = 16;
+    cam.image_width = 32;
     cam.samples_per_pixel = 10;
     cam.max_depth = 5;
 
     cam.vfov = 20;
-    cam.lookfrom = kdrt::renderer::Point3(13, 2, 3);
+    cam.lookfrom = kdrt::renderer::Point3(0, 0, 6);
     cam.lookat = kdrt::renderer::Point3(0, 0, 0);
     cam.vup = kdrt::renderer::Vector3(0, 1, 0);
 
