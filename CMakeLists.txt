@@ -53,12 +53,22 @@ target_include_directories(kdrtrenderer PUBLIC include)
 target_link_libraries(kdrtrenderer fmt::fmt)
 target_link_libraries(kdrtrenderer spdlog::spdlog)
 
-#enable_testing()
-#include(CTest)
-#
-#if(NOT BUILD_TESTING STREQUAL OFF)
-#    add_subdirectory(tests)
-#endif()
+if(NOT BUILD_TESTING STREQUAL OFF)
+    enable_testing()
+    include(CTest)
+
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(kdrtrenderer PRIVATE -coverage)
+        target_link_options(kdrtrenderer PRIVATE -coverage)
+    endif()
+
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        target_compile_options(kdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
+        target_link_options(kdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
+    endif()
+
+    add_subdirectory(tests)
+endif()
 
 install(TARGETS kdrtrenderer)
 install(FILES ${KDRTRENDERER_PUBLIC_HEADERS}
