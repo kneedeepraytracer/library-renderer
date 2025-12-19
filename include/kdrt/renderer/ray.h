@@ -1,7 +1,5 @@
 #pragma once
 
-#include <fmt/format.h>
-
 #include "kdrt/renderer/point3.h"
 #include "kdrt/renderer/vector3.h"
 

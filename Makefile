@@ -15,5 +15,9 @@ coverage: tests
 
 clean:
 	rm -rf ./build
-	rm *.profdata
-	rm *.profraw
+	rm -rf ./CMakeFiles
+	rm -f *.profdata
+	rm -f *.profraw
+	rm -f *.ppm
+	conan remove --confirm "*"
+	rm -f CMakeCache.txt CMakeUserPresets.json

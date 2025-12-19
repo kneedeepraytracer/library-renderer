@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <memory>
+#include <numbers>
 
 #include <spdlog/spdlog.h>
 
@@ -21,7 +22,7 @@
 #include "test_data.h"
 
 TEST(Render, simple_spheres) {
-    double R = std::cos(pi/4);
+    double R = std::cos(std::numbers::pi_v<double> / 4);
 
     std::shared_ptr<kdrt::renderer::Material> material_left = std::make_shared<kdrt::renderer::Lambertian>(kdrt::renderer::Color(0, 0, 1));
     std::shared_ptr<kdrt::renderer::Material> material_right = std::make_shared<kdrt::renderer::Lambertian>(kdrt::renderer::Color(1, 0, 0));
@@ -65,7 +66,7 @@ TEST(Render, simple_spheres) {
 }
 
 TEST(Render, simple_spheres_aabb) {
-    double R = std::cos(pi/4);
+    double R = std::cos(std::numbers::pi_v<double> / 4);
 
     std::shared_ptr<kdrt::renderer::Material> material_left = std::make_shared<kdrt::renderer::Lambertian>(kdrt::renderer::Color(0, 0, 1));
     std::shared_ptr<kdrt::renderer::Material> material_right = std::make_shared<kdrt::renderer::Lambertian>(kdrt::renderer::Color(1, 0, 0));

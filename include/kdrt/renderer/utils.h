@@ -2,10 +2,12 @@
 
 #include <limits>
 #include <random>
+#include <numbers>
 
 // Constants
 const double infinity = std::numeric_limits<double>::infinity();
-const double pi = 3.1415926535897932385;
+//const double pi = 3.1415926535897932385;
+const double pi = std::numbers::pi_v<double>;
 const double zeroish = 1e-160;
 
 // Utility Functions

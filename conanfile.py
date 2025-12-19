@@ -4,7 +4,7 @@
 import os
 
 from conan import ConanFile
-from conan.tools.cmake import CMake, cmake_layout
+from conan.tools.cmake import CMake, cmake_layout, CMakeToolchain, CMakeDeps
 
 ### GLOBALS ###
 
@@ -12,8 +12,31 @@ from conan.tools.cmake import CMake, cmake_layout
 
 ### CLASSES ###
 class LibraryRenderer(ConanFile):
+    name = "libkdrtrenderer"
+    version = "0.0.1"
+    package_type = "library"
+
+    license = "BSD-2-Clause"
+    author = "Daniel Williams <dwilliams@port8080.net>"
+    url = "https://github.com/kneedeepraytracer/library-renderer"
+    description = "A raytracing library"
+    topics = ("raytracing")
+
     settings = "os", "compiler", "build_type", "arch"
-    generators = "CMakeToolchain", "CMakeDeps"
+    options = {"shared": [True, False], "fPIC": [True, False]}
+    default_options = {"shared": False, "fPIC": True}
+
+    #generators = "CMakeToolchain", "CMakeDeps"
+
+    exports_sources = "CMakeLists.txt", "src/*", "include/*"
+
+    def config_options(self):
+        if self.settings.os == "Windows":
+            del self.options.fPIC
+
+    def configure(self):
+        if self.options.shared:
+            self.options.rm_safe("fPIC")
 
     def requirements(self):
         self.requires("fmt/11.2.0")
@@ -25,8 +48,20 @@ class LibraryRenderer(ConanFile):
     def layout(self):
         cmake_layout(self)
 
+    def generate(self):
+        deps = CMakeDeps(self)
+        deps.generate()
+        tc = CMakeToolchain(self)
+        tc.generate()
+
     def build(self):
-        print("tools.build:skip_test {}".format(self.conf.get("tools.build:skip_test", default = False)))
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+
+    def package(self):
+        cmake = CMake(self)
+        cmake.install()
+
+    def package_info(self):
+        self.cpp_info.libs = ["libkdrtrenderer"]
