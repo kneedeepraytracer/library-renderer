@@ -13,7 +13,7 @@ from conan.tools.cmake import CMake, cmake_layout, CMakeToolchain, CMakeDeps
 ### CLASSES ###
 class LibraryRenderer(ConanFile):
     name = "libkdrtrenderer"
-    version = "0.0.1"
+    version = "0.0.4"
     package_type = "library"
 
     license = "BSD-2-Clause"
@@ -23,8 +23,8 @@ class LibraryRenderer(ConanFile):
     topics = ("raytracing")
 
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True}
+    options = {"shared": [True, False], "fPIC": [True, False], "skip_test": [True, False]}
+    default_options = {"shared": False, "fPIC": True, "skip_test": False}
 
     #generators = "CMakeToolchain", "CMakeDeps"
 
@@ -65,3 +65,5 @@ class LibraryRenderer(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["libkdrtrenderer"]
+        #self.cpp_info.set_property("cmake_file_name", "libkdrtrender")
+        self.cpp_info.set_property("cmake_target_name", "libkdrtrenderer::libkdrtrenderer")

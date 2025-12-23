@@ -10,7 +10,7 @@ add_executable(unit_tests
     vector3_tests.cpp
 )
 
-target_link_libraries(unit_tests kdrtrenderer gtest::gtest)
+target_link_libraries(unit_tests libkdrtrenderer gtest::gtest)
 #gtest_discover_tests(unit_tests DISCOVERY_MODE PRE_TEST)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")

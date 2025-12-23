@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 
-project(kdrtrenderer CXX)
+project(libkdrtrenderer CXX)
 
 find_package(fmt REQUIRED)
 find_package(spdlog REQUIRED)
@@ -46,32 +46,40 @@ set(KDRTRENDERER_SOURCES
     src/vector3.cpp
 )
 
-add_library(kdrtrenderer ${KDRTRENDERER_SOURCES} ${KDRTRENDERER_PUBLIC_HEADERS})
+add_library(libkdrtrenderer ${KDRTRENDERER_SOURCES} ${KDRTRENDERER_PUBLIC_HEADERS})
+#add_library(libkdrtrenderer::libkdrtrenderer ALIAS libkdrtrenderer)
 
-target_include_directories(kdrtrenderer PUBLIC include)
+target_include_directories(libkdrtrenderer PUBLIC include)
 
-target_link_libraries(kdrtrenderer fmt::fmt)
-target_link_libraries(kdrtrenderer spdlog::spdlog)
+set_target_properties(libkdrtrenderer PROPERTIES PUBLIC_HEADER "${KDRTRENDERER_PUBLIC_HEADERS}" WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+
+target_link_libraries(libkdrtrenderer fmt::fmt)
+target_link_libraries(libkdrtrenderer spdlog::spdlog)
 
 if(NOT BUILD_TESTING STREQUAL OFF)
     enable_testing()
     include(CTest)
 
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(kdrtrenderer PRIVATE -coverage)
-        target_link_options(kdrtrenderer PRIVATE -coverage)
+        target_compile_options(libkdrtrenderer PRIVATE -coverage)
+        target_link_options(libkdrtrenderer PRIVATE -coverage)
     endif()
 
     if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        target_compile_options(kdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
-        target_link_options(kdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
+        target_compile_options(libkdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
+        target_link_options(libkdrtrenderer PRIVATE -fprofile-instr-generate -fcoverage-mapping)
     endif()
 
     add_subdirectory(tests)
 endif()
 
-install(TARGETS kdrtrenderer)
-install(FILES ${KDRTRENDERER_PUBLIC_HEADERS}
-        COMPONENT Development
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kdrt/renderer
+install(TARGETS libkdrtrenderer
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kdrt/renderer"
 )
+#install(FILES ${KDRTRENDERER_PUBLIC_HEADERS}
+#        COMPONENT Development
+#        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kdrt/renderer
+#)

@@ -1,4 +1,4 @@
-.PHONY: config build tests clean
+.PHONY: config build tests coverage package clean
 
 config:
 	conan install . --build=missing
@@ -12,6 +12,10 @@ tests: build
 coverage: tests
 	llvm-profdata merge -sparse default.profraw -o default.profdata
 	llvm-cov report ./build/Debug/tests/unit_tests -instr-profile=default.profdata
+
+package:
+	conan create . --build=missing -c tools.build:skip_test=true
+	conan upload "libkdrtrenderer" --remote kdrt-dev-libraries
 
 clean:
 	rm -rf ./build
